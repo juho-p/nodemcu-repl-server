@@ -24,8 +24,7 @@ con.out = function(s) {
 };
 
 con.input.addEventListener('keypress', function(e){
-    var keycode = e.keyCode;
-    if (keycode == 13){
+    if (e.keyCode == 13){
         var val = con.input.value;
         if (con.history[con.history.length-1] != val) {
             con.history.push(val);
@@ -35,7 +34,12 @@ con.input.addEventListener('keypress', function(e){
             con.out(val + ' -> ' + r.responseText);
         });
         con.input.value = '';
-    } else if (keycode == 38) {
+    }
+});
+
+con.input.addEventListener('keydown', function(e){
+    var keycode = e.keyCode;
+    if (keycode == 38) {
         con.loadhistory(1);
     } else if (keycode == 40) {
         con.loadhistory(-1);
